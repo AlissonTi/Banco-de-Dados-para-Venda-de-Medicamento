@@ -1,4 +1,4 @@
-                                                                                                             -- Gatilho Delete Cliente
+ -- Gatilho Delete Cliente                                                                                                            -- Gatilho Delete Cliente
 
 CREATE OR ALTER TRIGGER LOG_DELETE_CLIENTE FOR CLIENTE
 ACTIVE BEFORE DELETE
@@ -16,7 +16,7 @@ MEDICAMENTO
 ACTIVE BEFORE UPDATE
 AS
 BEGIN
-    INSERT INTO LOG_UPDATE_PRECO (ID_MEDICAMENTO, PRECO,ANTIGO, PRECO_NOVO, DATA_ACAO)
+    INSERT INTO LOG_UPDATE_PRECO (ID_MEDICAMENTO, PRECO_ANTIGO, PRECO_NOVO, DATA_ACAO)
     SELECT NEW.ID_MEDICAMENTO, OLD.PRECO, NEW.PRECO, CURRENT_TIMESTAMP
     FROM MEDICAMENTO;
 END   
@@ -33,7 +33,7 @@ BEGIN
 END
 
 --GERADORES E GATILHOS
---Não usamos no banco, só depois de já ter inseridos os dados (eles geram a ID das tabelas automaticamente, depois de rodar o gerador tem que rodar o gatilho dele para funcionar)
+--Não usamos no banco, só depois de já ter inseridos os dados com suas IDs.
 
 --Gerador de todas as tabelas
 
